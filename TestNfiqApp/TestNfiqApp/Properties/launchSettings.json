@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TestNfiqApp": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
