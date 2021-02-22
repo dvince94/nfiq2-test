@@ -17,7 +17,7 @@ namespace TestNfiqApp
 
             if (ovcPtr != IntPtr.Zero)
                 ocv = Marshal.PtrToStringAnsi(ovcPtr);
-            return string.Format("Major: {0}, Minor: {1}, Patch: {2}, OCV: {3}", major, minor, patch, ocv);
+            return string.Format("Major: {0}, Minor: {1}, Patch: {2}, OpenCV: {3}", major, minor, patch, ocv);
         }
 
         [DllImport(@"..\..\..\..\..\Binaries\Nfiq2Api.dll")]
@@ -28,11 +28,11 @@ namespace TestNfiqApp
             return intPtr != IntPtr.Zero;
         }
 
-        [DllImport(@"..\..\..\..\..\Binaries\Nfiq2Api.dll\Nfiq2Api.dll")]
-        private static extern int ComputeNfiq2Score(int fpos, ref byte[] pixels, int size, int width, int height, int ppi);
-        public static int GetNfiq2Score(int fpos, ref byte[] pixels, int size, int width, int height, int ppi)
+        [DllImport(@"..\..\..\..\..\Binaries\Nfiq2Api.dll")]
+        private static extern int ComputeNfiq2Score(int fpos, byte[] pixels, int size, int width, int height, int ppi);
+        public static int GetNfiq2Score(int fpos, byte[] pixels, int size, int width, int height, int ppi)
         {
-            return ComputeNfiq2Score(fpos, ref pixels, size, width, height, ppi);
+            return ComputeNfiq2Score(fpos, pixels, size, width, height, ppi);
         }
     }
 }

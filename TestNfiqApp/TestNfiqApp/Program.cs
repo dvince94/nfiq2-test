@@ -22,7 +22,7 @@ namespace TestNfiqApp
             Console.WriteLine("Is initialized: " + Nfiq2Invokes.InitializeNfiq2());
             Console.WriteLine(Nfiq2Invokes.Nfiq2Version());
 
-            var score = Nfiq2Invokes.GetNfiq2Score(0, ref wsqImg, wsqImg.Length, 545, 622, 500);
+            var score = Nfiq2Invokes.GetNfiq2Score(0, wsqImg, wsqImg.Length, 545, 622, 500);
             Console.WriteLine("The score for sample_image.wsq is " + score);
         }
     }
