@@ -34,5 +34,19 @@ namespace TestNfiqApp
         {
             return ComputeNfiq2Score(fpos, pixels, size, width, height, ppi);
         }
+
+        [DllImport(@"..\..\..\..\..\Binaries\Nfiq2Api.dll")]
+        private static extern int DecodeWsq(ref IntPtr decodedWsq, ref int width, ref int height, ref int ppi, byte[] wsq, int wsqSize);
+        public static int DecodeWsqByte(ref IntPtr decodedWsq, ref int width, ref int height, ref int ppi, byte[] wsq, int wsqSize)
+        {
+            return DecodeWsq(ref decodedWsq, ref width, ref height, ref ppi, wsq, wsqSize);
+        }
+
+        [DllImport(@"..\..\..\..\..\Binaries\Nfiq2Api.dll")]
+        private static extern int DecodeWsqAndComputeNfiq2Score(int fpos, byte[] pixels, int size, int width, int height, int ppi);
+        public static int DecodeWsqAndGetNfiq2Score(int fpos, byte[] pixels, int size, int width, int height, int ppi)
+        {
+            return DecodeWsqAndComputeNfiq2Score(fpos, pixels, size, width, height, ppi);
+        }
     }
 }

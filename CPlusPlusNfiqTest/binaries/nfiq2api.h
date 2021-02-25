@@ -16,3 +16,7 @@ extern "C" DLLEXPORT void STDCALL GetNfiq2Version(
 extern "C" DLLEXPORT const char *STDCALL InitNfiq2();
 extern "C" DLLEXPORT int STDCALL ComputeNfiq2Score(int fpos,
     const unsigned char *pixels, int size, int width, int height, int ppi);
+extern "C" DLLEXPORT int STDCALL DecodeWsq(unsigned char **odata, int *ow, int *oh, int *oppi,
+    unsigned char *idata, const int ilen);
+extern "C" DLLEXPORT int STDCALL DecodeWsqAndComputeNfiq2Score(int fpos,
+    unsigned char *pixels, int size, int width, int height, int ppi);

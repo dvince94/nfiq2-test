@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPlusPlusNfiqTest", "CPlusPlusNfiqTest\CPlusPlusNfiqTest.vcxproj", "{7701F096-9690-49D1-9F7B-0A5D20CE12CA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nbisobjs", "..\..\..\..\..\..\Temp\NFIQ2\libbiomeval\build\lib\nbisobjs.vcxproj", "{34C9DF98-854A-3E1C-8F73-F913616BF40A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,13 @@ Global
 		{7701F096-9690-49D1-9F7B-0A5D20CE12CA}.Release|x64.Build.0 = Release|x64
 		{7701F096-9690-49D1-9F7B-0A5D20CE12CA}.Release|x86.ActiveCfg = Release|Win32
 		{7701F096-9690-49D1-9F7B-0A5D20CE12CA}.Release|x86.Build.0 = Release|Win32
+		{34C9DF98-854A-3E1C-8F73-F913616BF40A}.Debug|x64.ActiveCfg = debug|x64
+		{34C9DF98-854A-3E1C-8F73-F913616BF40A}.Debug|x64.Build.0 = debug|x64
+		{34C9DF98-854A-3E1C-8F73-F913616BF40A}.Debug|x86.ActiveCfg = debug|x64
+		{34C9DF98-854A-3E1C-8F73-F913616BF40A}.Release|x64.ActiveCfg = debug|x64
+		{34C9DF98-854A-3E1C-8F73-F913616BF40A}.Release|x64.Build.0 = debug|x64
+		{34C9DF98-854A-3E1C-8F73-F913616BF40A}.Release|x86.ActiveCfg = debug|x64
+		{34C9DF98-854A-3E1C-8F73-F913616BF40A}.Release|x86.Build.0 = debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

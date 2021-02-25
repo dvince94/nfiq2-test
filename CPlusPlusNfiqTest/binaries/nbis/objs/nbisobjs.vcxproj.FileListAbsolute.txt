@@ -1,0 +1,2 @@
+D:\Workspace\NFIQ2 - Copy\libbiomeval\build\lib\nbisobjs.dir\debug\nbisobjs.lib
+D:\Workspace\NFIQ2 - Copy\libbiomeval\build\lib\nbisobjs.dir\debug\nbisobjs.pdb

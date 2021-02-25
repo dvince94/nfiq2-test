@@ -9,6 +9,10 @@
 #include <WSQ_library64.h>
 #include <wingdi.h>
 #include "data.h"
+extern "C" {
+    #include <wsq.h>
+    int biomeval_nbis_debug = 0; /* Required by libwsq */
+}
 
 using namespace std;
 
@@ -36,19 +40,7 @@ int main()
         infile.read((char*)(&mBuffer[0]), length);
         cout << " size=" << mBuffer.size() << endl;
 
-
-        //HBITMAP wsqImage = CreateBMPFromFile("D:\\Downloads\\sample_image.wsq");
-        //BITMAP bitmap;
-        //unsigned char* test = (unsigned char*)malloc(length);
-        //GetObject(wsqImage, sizeof(bitmap), (LPVOID)&bitmap);
-        //GetBitmapBits(wsqImage, sizeof(test), (LPVOID)&test);
-
-        //uint8_t* val = (uint8_t*)test;
-        //unsigned char val2[23717];
-        //copy(mBuffer.begin(), mBuffer.end(), val2);
-        //Data data = Data(val2, length);
-
-        // Decode stream
+        // Decode stream using cognaxon
         int width = 545;
         int height = 622;
         int ppi = 500;
@@ -59,9 +51,28 @@ int main()
         unsigned char* outBuffer = new unsigned char[size]();
         unsigned char* cmt = NULL;
         WSQ_decode_stream(mBuffer.data(), length, &outBuffer, wd, ht, dpi, &cmt);
-
         int score = ComputeNfiq2Score(6, outBuffer, size, width, height, 500);
-        std::cout << "score: " << score << "\n";
+        std::cout << "Cognaxon Decode score: " << score << "\n";
+
+        //Decode stream using Nist nbis libbiomeval
+        int depth = 8;
+        int* dp = &depth;
+        int lossyflag = 1;
+        int* lf = &lossyflag;
+        unsigned char* oData = new unsigned char[size]();
+        const int len = length;
+        int test = biomeval_nbis_wsq_decode_mem(&oData, wd, ht, dp, dpi, lf, mBuffer.data(), len);
+        int score2 = ComputeNfiq2Score(6, oData, size, width, height, 500); 
+        std::cout << "NBIS Decode score: " << score2 << "\n";
+
+        unsigned char* o2Data = new unsigned char[size]();
+        int test2 = DecodeWsq(&o2Data, wd, ht, dpi, mBuffer.data(), len);
+        //int test2 = (&oData, wd, ht, dp, dpi, lf, mBuffer.data(), len);
+        int score3 = ComputeNfiq2Score(6, o2Data, size, width, height, 500);
+        std::cout << "Edited Decode score: " << score3 << "\n";
+
+        int score4 = DecodeWsqAndComputeNfiq2Score(6, mBuffer.data(), length, width, height, 500);
+        std::cout << "Combined decode and compute score: " << score4 << "\n";
     }
 }
 
