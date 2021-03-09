@@ -21,15 +21,13 @@ int main()
     std::cout << "Hello World!\n";
     std::cout << InitNfiq2() << "\n";
     string fileName = "D:\\Downloads\\sample_image.wsq";
+    string pngFile = "D:\\Downloads\\Sample-fingerprinti.png";
 
     //open file
     ifstream infile(fileName.c_str(), std::ios::binary | std::ios::in);
 
     if (infile)
     {
-        // copies all data into buffer
-        std::vector<unsigned char> buffer(std::istreambuf_iterator<char>(infile), {});
-
         //get length of file
         infile.seekg(0, std::ios::end);
         size_t length = infile.tellg();
@@ -73,7 +71,42 @@ int main()
 
         int score4 = DecodeWsqAndComputeNfiq2Score(6, mBuffer.data(), length, width, height, 500);
         std::cout << "Combined decode and compute score: " << score4 << "\n";
+        infile.close();
     }
+
+    //open file
+    ifstream pngStream(pngFile.c_str(), std::ios::binary | std::ios::in);
+
+    if (pngStream)
+    {
+        //Get bytes
+        //get length of file
+        pngStream.seekg(0, std::ios::end);
+        size_t length = infile.tellg();
+        pngStream.seekg(0);
+
+        vector<unsigned char> mBuffer;
+        mBuffer.resize(length);
+        pngStream.read((char*)(&mBuffer[0]), length);
+        cout << " size=" << mBuffer.size() << endl;
+
+        //Encode byte
+        int width = 361;
+        int height = 344;
+        int ppi = 500;
+        int* wd = &width;
+        int* ht = &height;
+        int* dpi = &ppi;
+        int depth = 8;
+        int* dp = &depth;
+        unsigned char* oData = new unsigned char[length]();
+        int olength = 0;
+        int* olen = &olength;
+
+
+        pngStream.close();
+    }
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

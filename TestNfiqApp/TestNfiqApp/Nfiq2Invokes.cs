@@ -48,5 +48,12 @@ namespace TestNfiqApp
         {
             return DecodeWsqAndComputeNfiq2Score(fpos, pixels, size, width, height, ppi);
         }
+
+        [DllImport(@"..\..\..\..\..\Binaries\Nfiq2Api.dll", CharSet = CharSet.Ansi)]
+        private static extern int EncodeWsq(ref IntPtr encodedWsq, ref int encodedWsqSize, float bitrate, byte[] wsq, int width, int height, int depth, int ppi, string comment_txt);
+        public static int EncodeWsqByte(ref IntPtr encodedWsq, ref int encodedWsqSize, float bitrate, byte[] wsq, int width, int height, int depth, int ppi, string comment_txt)
+        {
+            return EncodeWsq(ref encodedWsq, ref encodedWsqSize, bitrate, wsq, width, height, depth, ppi, comment_txt);
+        }
     }
 }

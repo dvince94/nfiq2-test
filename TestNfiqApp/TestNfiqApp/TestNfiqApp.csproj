@@ -31,6 +31,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPP.PresentationCore" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\Sample-fingerprinti.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Assets\sample_image.wsq">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

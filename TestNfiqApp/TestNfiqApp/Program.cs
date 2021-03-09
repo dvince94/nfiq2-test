@@ -10,6 +10,7 @@ namespace TestNfiqApp
         {
             Console.WriteLine("Hello World!");
             var path = "Assets\\sample_image.wsq";
+            var pngPath = "Assets\\Sample-fingerprinti.png";
 
             //Adds a random pause and press enter
             //Console.WriteLine("Enter anything:");
@@ -36,6 +37,23 @@ namespace TestNfiqApp
 
             var score2 = Nfiq2Invokes.DecodeWsqAndGetNfiq2Score(6, wsqImg, wsqImg.Length, 545, 622, 500);
             Console.WriteLine("The score for sample_image.wsq using DecodeWsqAndGetNfiq2Score is " + score2);
+
+            //Decode png 
+            //Stream pngImage = new FileStream(pngPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            //PngBitmapDecoder decoder = new PngBitmapDecoder(pngImage, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+            //BitmapSource bitmapSource = decoder.Frames[0];
+
+            var ps = File.OpenRead(pngPath);
+            var pngImg = new byte[ps.Length];
+            ps.Read(pngImg, 0, pngImg.Length);
+            int pW = 361;
+            int pH = 344;
+            int pD = 8;
+            int pDpi = 500;
+            int oSize = 0;
+            IntPtr encodedWsq = IntPtr.Zero;
+            var encodedByte = Nfiq2Invokes.EncodeWsqByte(ref encodedWsq, ref oSize, 2.75f, pngImg, pW, pH, pD, pDpi, string.Empty);
+            Console.WriteLine("Encoded Bytes");
         }
     }
 }
